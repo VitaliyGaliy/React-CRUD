@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import { NavLink, Route } from 'react-router-dom'
+import GamesPage from './GamesPage'
+import GamesFormPage from './GamesFormPage'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className="ui container">
+        <div className="ui three item menu">
+          <NavLink className="item" activeClassName="active" exact to="/">Home</NavLink>
+          <NavLink className="item" activeClassName="active" exact to="/games">Games</NavLink>
+          <NavLink className="item" activeClassName="active" exact to="/games/new">Add New Game</NavLink>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Route exact path="/games" component={GamesPage} />
+        <Route path="/games/new" component={GamesFormPage} />
+        <Route path="/game/:_id" component={GamesFormPage} />
       </div>
     );
   }
